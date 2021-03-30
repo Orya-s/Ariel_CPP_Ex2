@@ -1,4 +1,5 @@
 #include <string>
+#include <vector>
 #include "Direction.hpp"
 
 
@@ -6,13 +7,14 @@ namespace ariel {
 	class Board{
         private:
             uint rows, cols;
-
+            std::vector<std::vector<char>> board;
+            uint longestLine;
 
         public:
             Board() {}
             ~Board () {}
-            void static post(int row, int col, Direction direction, std::string&& message);
-            std::string static read(int row, int col, Direction direction, int length);
+            void post(uint row, uint col, Direction direction,const std::string& message);
+            std::string read(uint row, uint col, Direction direction, uint length);
             void show();
     };
 };
