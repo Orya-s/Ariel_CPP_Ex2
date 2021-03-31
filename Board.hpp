@@ -8,7 +8,6 @@ namespace ariel {
         private:
             uint rows, cols;
             std::vector<std::vector<char>> board;
-            uint longestLine;
 
         public:
             Board() {}

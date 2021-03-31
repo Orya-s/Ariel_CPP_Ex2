@@ -10,21 +10,13 @@ namespace ariel
     string const message;
     void Board::post(uint row, uint col, Direction direction, const string &message)
     {   
-
-        // if (message.size() > longestLine)
-        // {
-        //     longestLine = message.size() + 1;
-        // }
-
+        // adding more vectors aka lines
         if (board.size() <= row + message.size())
         {
             int vecNum = 0;
             uint size = message.size() + 1;
             if(direction == Direction::Horizontal){
                 vecNum = (int)(row - board.size() + 1);
-
-               // ulong boardMax = max_element(board.begin(),board.end());
-               // size = max(message.size()+1 , boardMax);
             } else {
                 vecNum = (int)(row - board.size() + message.size() + 1);
             }
@@ -37,6 +29,7 @@ namespace ariel
             }
         }
 
+        // if didn't need more lines but the line isn't long enough
         if (board.at(row).size() <= col + message.size())
         {
             for (uint i = board.at(row).size(); i <= col + message.size() +1; i++)
@@ -45,6 +38,7 @@ namespace ariel
             }
         }
         
+        // if the message is vertical - make sure all lines of the message are long enough 
         if (direction == Direction::Vertical){
             for (uint i = row; i < row+message.size()+1; i++)
             {
@@ -55,6 +49,7 @@ namespace ariel
             } 
         }
 
+        // posting the message
         ulong index = 0;
         if (direction == Direction::Horizontal)
         {
@@ -76,6 +71,7 @@ namespace ariel
     {
         string ans;
    
+        // if the reading location is beyond the board's current size
         if (board.size() <= row)
         {
             for (int i = 0; i < length; i++)
@@ -84,7 +80,6 @@ namespace ariel
             }
             return ans;
         }
-        
         if (board.at(row).size() <= col)
         {
             for (int i = 0; i < length; i++)
@@ -94,7 +89,7 @@ namespace ariel
             return ans;
         }
         
-
+        // reading the line
         if (direction == Direction::Horizontal)
         {
             for (uint j = col; j < col+length && j < board.at(row).size(); j++)
@@ -109,6 +104,7 @@ namespace ariel
             }
         }
 
+        // if part of the reading is beyond the board's current size
         while (ans.size() < length)
         {
             ans += '_';
